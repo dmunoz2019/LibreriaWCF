@@ -18,6 +18,8 @@ namespace Libreria
         
         [OperationContract]
         List<Autores> ObtenerAutores();
+        [OperationContract]
+        List<Libros> ObtenerLibrosPorAutor(string nombreAutor);
    
 
        
