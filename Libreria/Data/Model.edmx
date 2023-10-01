@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaGestionLibrosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autores">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Nacionalidad" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Editoriales">
+          <Key>
+            <PropertyRef Name="IDEditorial" />
+          </Key>
+          <Property Name="IDEditorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="255" />
+          <Property Name="País" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Libros">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Título" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="IDAutor" Type="int" />
+          <Property Name="IDEditorial" Type="int" />
+        </EntityType>
+        <Association Name="FK__Libros__IDAutor__398D8EEE">
+          <End Role="Autores" Type="Self.Autores" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IDAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_Editoriales">
+          <End Role="Editoriales" Type="Self.Editoriales" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editoriales">
+              <PropertyRef Name="IDEditorial" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IDEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_CreateAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nacionalidad" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_CreateLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Título" Type="nvarchar" Mode="In" />
+          <Parameter Name="Año" Type="int" Mode="In" />
+          <Parameter Name="NombreAutor" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetAllAutores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAllBooks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAllEditoriales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAutorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetAutoresConMasDeTresLibros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAutorYLibrosPorLibroId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDLibro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetLibroById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetLibrosPorAutorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAutor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetLibrosPorNombreAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetLibrosPorNombreEditorial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreEditorial" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdateAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nacionalidad" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdateLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Título" Type="nvarchar" Mode="In" />
+          <Parameter Name="Año" Type="int" Mode="In" />
+          <Parameter Name="IDAutor" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SistemaGestionLibrosModelStoreContainer">
+          <EntitySet Name="Autores" EntityType="Self.Autores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editoriales" EntityType="Self.Editoriales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Libros__IDAutor__398D8EEE" Association="Self.FK__Libros__IDAutor__398D8EEE">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_Editoriales" Association="Self.FK_Libros_Editoriales">
+            <End Role="Editoriales" EntitySet="Editoriales" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaGestionLibrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK__Libros__IDAutor__398D8EEE" FromRole="Autores" ToRole="Libros" />
+        </EntityType>
+        <EntityType Name="Editoriale">
+          <Key>
+            <PropertyRef Name="IDEditorial" />
+          </Key>
+          <Property Name="IDEditorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="País" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK_Libros_Editoriales" FromRole="Editoriales" ToRole="Libros" />
+        </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Título" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="IDAutor" Type="Int32" />
+          <Property Name="IDEditorial" Type="Int32" />
+          <NavigationProperty Name="Autore" Relationship="Self.FK__Libros__IDAutor__398D8EEE" FromRole="Libros" ToRole="Autores" />
+          <NavigationProperty Name="Editoriale" Relationship="Self.FK_Libros_Editoriales" FromRole="Libros" ToRole="Editoriales" />
+        </EntityType>
+        <Association Name="FK__Libros__IDAutor__398D8EEE">
+          <End Role="Autores" Type="Self.Autore" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autores">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IDAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libros_Editoriales">
+          <End Role="Editoriales" Type="Self.Editoriale" Multiplicity="0..1" />
+          <End Role="Libros" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editoriales">
+              <PropertyRef Name="IDEditorial" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="IDEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaGestionLibrosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autores" EntityType="Self.Autore" />
+          <EntitySet Name="Editoriales" EntityType="Self.Editoriale" />
+          <EntitySet Name="Libros" EntityType="Self.Libro" />
+          <AssociationSet Name="FK__Libros__IDAutor__398D8EEE" Association="Self.FK__Libros__IDAutor__398D8EEE">
+            <End Role="Autores" EntitySet="Autores" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libros_Editoriales" Association="Self.FK_Libros_Editoriales">
+            <End Role="Editoriales" EntitySet="Editoriales" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <FunctionImport Name="sp_CreateAutor">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CreateLibro">
+            <Parameter Name="Título" Mode="In" Type="String" />
+            <Parameter Name="Año" Mode="In" Type="Int32" />
+            <Parameter Name="NombreAutor" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteAutor">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteLibro">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllAutores" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAllAutores_Result)" />
+          <FunctionImport Name="sp_GetAllBooks" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAllBooks_Result)" />
+          <FunctionImport Name="sp_GetAllEditoriales" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAllEditoriales_Result)" />
+          <FunctionImport Name="sp_GetAutorById" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAutorById_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAutoresConMasDeTresLibros" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAutoresConMasDeTresLibros_Result)" />
+          <FunctionImport Name="sp_GetAutorYLibrosPorLibroId" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAutorYLibrosPorLibroId_Result)">
+            <Parameter Name="IDLibro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLibroById" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibroById_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLibrosPorAutorId" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibrosPorAutorId_Result)">
+            <Parameter Name="IDAutor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLibrosPorNombreAutor" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibrosPorNombreAutor_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLibrosPorNombreEditorial" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibrosPorNombreEditorial_Result)">
+            <Parameter Name="NombreEditorial" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateAutor">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateLibro">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Título" Mode="In" Type="String" />
+            <Parameter Name="Año" Mode="In" Type="Int32" />
+            <Parameter Name="IDAutor" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_GetAllAutores_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllBooks_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Título" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Año" Nullable="false" />
+          <Property Type="Int32" Name="IDAutor" Nullable="true" />
+          <Property Type="Int32" Name="IDEditorial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllEditoriales_Result">
+          <Property Type="Int32" Name="IDEditorial" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAutorById_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAutoresConMasDeTresLibros_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="NumeroDeLibros" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAutorYLibrosPorLibroId_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Título" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Año" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GetLibroById_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Título" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Año" Nullable="false" />
+          <Property Type="Int32" Name="IDAutor" Nullable="true" />
+          <Property Type="Int32" Name="IDEditorial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetLibrosPorAutorId_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Título" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Año" Nullable="false" />
+          <Property Type="String" Name="Autor" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_GetLibrosPorNombreAutor_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Título" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Año" Nullable="false" />
+          <Property Type="String" Name="Autor" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_GetLibrosPorNombreEditorial_Result">
+          <Property Type="String" Name="Título" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Autor" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Editorial" Nullable="false" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaGestionLibrosModelStoreContainer" CdmEntityContainer="SistemaGestionLibrosEntities">
+          <EntitySetMapping Name="Autores">
+            <EntityTypeMapping TypeName="SistemaGestionLibrosModel.Autore">
+              <MappingFragment StoreEntitySet="Autores">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editoriales">
+            <EntityTypeMapping TypeName="SistemaGestionLibrosModel.Editoriale">
+              <MappingFragment StoreEntitySet="Editoriales">
+                <ScalarProperty Name="IDEditorial" ColumnName="IDEditorial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libros">
+            <EntityTypeMapping TypeName="SistemaGestionLibrosModel.Libro">
+              <MappingFragment StoreEntitySet="Libros">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+                <ScalarProperty Name="IDEditorial" ColumnName="IDEditorial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_CreateAutor" FunctionName="SistemaGestionLibrosModel.Store.sp_CreateAutor" />
+          <FunctionImportMapping FunctionImportName="sp_CreateLibro" FunctionName="SistemaGestionLibrosModel.Store.sp_CreateLibro" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteAutor" FunctionName="SistemaGestionLibrosModel.Store.sp_DeleteAutor" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteLibro" FunctionName="SistemaGestionLibrosModel.Store.sp_DeleteLibro" />
+          <FunctionImportMapping FunctionImportName="sp_GetAllAutores" FunctionName="SistemaGestionLibrosModel.Store.sp_GetAllAutores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetAllAutores_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAllBooks" FunctionName="SistemaGestionLibrosModel.Store.sp_GetAllBooks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetAllBooks_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+                <ScalarProperty Name="IDEditorial" ColumnName="IDEditorial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAllEditoriales" FunctionName="SistemaGestionLibrosModel.Store.sp_GetAllEditoriales">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetAllEditoriales_Result">
+                <ScalarProperty Name="IDEditorial" ColumnName="IDEditorial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAutorById" FunctionName="SistemaGestionLibrosModel.Store.sp_GetAutorById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetAutorById_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAutoresConMasDeTresLibros" FunctionName="SistemaGestionLibrosModel.Store.sp_GetAutoresConMasDeTresLibros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetAutoresConMasDeTresLibros_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="NumeroDeLibros" ColumnName="NumeroDeLibros" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAutorYLibrosPorLibroId" FunctionName="SistemaGestionLibrosModel.Store.sp_GetAutorYLibrosPorLibroId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetAutorYLibrosPorLibroId_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetLibroById" FunctionName="SistemaGestionLibrosModel.Store.sp_GetLibroById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetLibroById_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+                <ScalarProperty Name="IDEditorial" ColumnName="IDEditorial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetLibrosPorAutorId" FunctionName="SistemaGestionLibrosModel.Store.sp_GetLibrosPorAutorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetLibrosPorAutorId_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetLibrosPorNombreAutor" FunctionName="SistemaGestionLibrosModel.Store.sp_GetLibrosPorNombreAutor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetLibrosPorNombreAutor_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetLibrosPorNombreEditorial" FunctionName="SistemaGestionLibrosModel.Store.sp_GetLibrosPorNombreEditorial">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaGestionLibrosModel.sp_GetLibrosPorNombreEditorial_Result">
+                <ScalarProperty Name="Título" ColumnName="Título" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UpdateAutor" FunctionName="SistemaGestionLibrosModel.Store.sp_UpdateAutor" />
+          <FunctionImportMapping FunctionImportName="sp_UpdateLibro" FunctionName="SistemaGestionLibrosModel.Store.sp_UpdateLibro" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

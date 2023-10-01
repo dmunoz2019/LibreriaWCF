@@ -69,81 +69,97 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Libreria.svc" />
-    <Content Include="Model.Context.tt">
+    <Content Include="Data\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model.tt">
+    <Content Include="Data\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Servicios\Libreria.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autores.cs">
+    <Compile Include="Data\Autore.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Libreria.svc.cs">
-      <DependentUpon>Libreria.svc</DependentUpon>
-    </Compile>
-    <Compile Include="ILibreria.cs" />
-    <Compile Include="Libros.cs">
+    <Compile Include="Data\Editoriale.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.Context.cs">
+    <Compile Include="Data\Libro.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs">
+    <Compile Include="Data\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.Designer.cs">
+    <Compile Include="Data\Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\sp_GetAllAutores_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetAllBooks_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetAllEditoriales_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetAutorById_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetAutoresConMasDeTresLibros_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetAutorYLibrosPorLibroId_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetLibroById_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetLibrosPorAutorId_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetLibrosPorNombreAutor_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetLibrosPorNombreEditorial_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositorios\Interfaces\IRepositorioEditoriale.cs" />
+    <Compile Include="Repositorios\RepositorioEditoriale.cs" />
+    <Compile Include="Servicios\Libreria.svc.cs">
+      <DependentUpon>Libreria.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Servicios\ILibreria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sp_GetAllAutores_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetAllBooks_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetAutorById_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetAutoresConMasDeTresLibros_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetAutorYLibrosPorLibroId_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetLibroById_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetLibrosPorAutorId_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_GetLibrosPorNombreAutor_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Repositorios\Interfaces\IRepositorioLibro.cs" />
+    <Compile Include="Repositorios\Interfaces\IRepositorioAutor.cs" />
+    <Compile Include="Repositorios\RepositorioAutor.cs" />
+    <Compile Include="Repositorios\RepositorioLibro.cs" />
+    <Compile Include="UnidadesT\IUnidadDeTrabajo.cs" />
+    <Compile Include="UnidadesT\UnidadDeTrabajo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model.edmx">
+    <EntityDeploy Include="Data\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model.edmx.diagram">
+    <Content Include="Data\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
