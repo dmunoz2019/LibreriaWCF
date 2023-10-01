@@ -43,7 +43,7 @@ namespace Libreria
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateAutor", nombreParameter, nacionalidadParameter);
         }
     
-        public virtual int sp_CreateLibro(string título, Nullable<int> año, Nullable<int> iDAutor)
+        public virtual int sp_CreateLibro(string título, Nullable<int> año, string nombreAutor)
         {
             var títuloParameter = título != null ?
                 new ObjectParameter("Título", título) :
@@ -53,11 +53,11 @@ namespace Libreria
                 new ObjectParameter("Año", año) :
                 new ObjectParameter("Año", typeof(int));
     
-            var iDAutorParameter = iDAutor.HasValue ?
-                new ObjectParameter("IDAutor", iDAutor) :
-                new ObjectParameter("IDAutor", typeof(int));
+            var nombreAutorParameter = nombreAutor != null ?
+                new ObjectParameter("NombreAutor", nombreAutor) :
+                new ObjectParameter("NombreAutor", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateLibro", títuloParameter, añoParameter, iDAutorParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateLibro", títuloParameter, añoParameter, nombreAutorParameter);
         }
     
         public virtual int sp_DeleteAutor(Nullable<int> iD)

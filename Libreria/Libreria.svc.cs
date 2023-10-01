@@ -20,7 +20,7 @@ namespace Libreria
     {
         IEnumerable<Autores> ObtenerAutores();
         Autores ObtenerAutorPorId(int id);
-        void AgregarAutor(Autores autor);
+        void AgregarAutor(string Nombre, string Nacionalidad);
         void ActualizarAutor(Autores autor);
         void EliminarAutor(int id);
     }
@@ -28,11 +28,12 @@ namespace Libreria
     public interface IRepositorioLibro
     {
         IEnumerable<Libros> ObtenerLibros();
-        IEnumerable<Libros> ObtenerLibrosPorAutor(string nombreAutor);
+        IEnumerable<LibroConAutor> ObtenerLibrosPorAutor(string nombreAutor);
         Libros ObtenerLibroPorId(int id);
-        void AgregarLibro(Libros libro);
+        void AgregarLibro(string Título, int Año, string NombreAutor);
         void ActualizarLibro(Libros libro);
         void EliminarLibro(int id);
+        ObjectResult<sp_GetAutorYLibrosPorLibroId_Result> ObtenerAutorPorLibro(int libroid);
     }
 
 
@@ -77,9 +78,17 @@ namespace Libreria
             throw new NotImplementedException();
         }
 
-        void IRepositorioAutor.AgregarAutor(Autores autor)
+        void IRepositorioAutor.AgregarAutor(string Nombre, string Nacionalidad)
         {
-            throw new NotImplementedException();
+            // Vamos a insertar un autor
+            try
+            {
+                db.sp_CreateAutor(Nombre, Nacionalidad);
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
 
         void IRepositorioAutor.EliminarAutor(int id)
@@ -101,6 +110,19 @@ namespace Libreria
         public RepositorioLibro(SistemaGestionLibrosEntities context)
         {
             this.db = context;
+        }
+
+        public ObjectResult<sp_GetAutorYLibrosPorLibroId_Result> ObtenerAutorPorLibro(int libroid)
+        {
+            // Vamos a obtener a un autor por el id libro
+            try
+            {
+                return db.sp_GetAutorYLibrosPorLibroId(libroid);
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
 
         public IEnumerable<Libros> ObtenerLibros()
@@ -133,50 +155,76 @@ namespace Libreria
             throw new NotImplementedException();
         }
 
-        void IRepositorioLibro.AgregarLibro(Libros libro)
+        void IRepositorioLibro.AgregarLibro(string Título, int Año, string NombreAutor)
         {
-            throw new NotImplementedException();
+            // Vamos a insertar un libro
+            try
+            {
+                db.sp_CreateLibro(Título, Año, NombreAutor);
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
 
         void IRepositorioLibro.EliminarLibro(int id)
         {
-            throw new NotImplementedException();
+             // Vamos a borrar un libro
+             try
+            {
+                db.sp_DeleteLibro(id);
+
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
 
         Libros IRepositorioLibro.ObtenerLibroPorId(int id)
         {
-            throw new NotImplementedException();
+            // Vamos a obtener un libro por id
+            try
+            {
+                ObjectResult<sp_GetLibroById_Result> libro = db.sp_GetLibroById(id);
+                Libros libroitem = new Libros
+                {
+                    ID = libro.FirstOrDefault().ID,
+                    Título = libro.FirstOrDefault().Título,
+                    Año = libro.FirstOrDefault().Año,
+                    IDAutor = libro.FirstOrDefault().IDAutor
+                };
+                return libroitem;
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
 
-        IEnumerable<Libros> IRepositorioLibro.ObtenerLibrosPorAutor(string nombreAutor)
+        IEnumerable<LibroConAutor> IRepositorioLibro.ObtenerLibrosPorAutor(string nombreAutor)
         {
+            if (string.IsNullOrWhiteSpace(nombreAutor))
+            {
+                throw new ArgumentException($"'{nameof(nombreAutor)}' no puede ser nulo.", nameof(nombreAutor));
+            }
             //Vamos a obtener libros por autor
             try
             {
-                //lets check if the autor exist using a ternary operator 
-                //if the autor is null then throw an exception else return the autor
-                var autor = db.Autores.FirstOrDefault(a => a.Nombre == nombreAutor) ?? throw new Exception("El autor no existe, revise poner nombre completo");
-                if (nombreAutor == null)
-                {
-                    throw new Exception("El nombre del autor no puede ser nulo");
-                }
-                if (nombreAutor == "")
-                {
-                    throw new Exception("El nombre del autor no puede estar vacío");
-                }
-                if (nombreAutor.Length > 50)
-                {
-                    throw new Exception("El nombre del autor no puede tener más de 50 caracteres");
-                }
+          
                 ObjectResult<sp_GetLibrosPorNombreAutor_Result> libros = db.sp_GetLibrosPorNombreAutor(nombreAutor);
 
-                List<Libros> listaLibros = new List<Libros>();
+                List<LibroConAutor> listaLibros = new List<LibroConAutor>();
                 foreach (sp_GetLibrosPorNombreAutor_Result idlibro in libros)
                 {
-                    Libros libroitem = new Libros
+                    LibroConAutor libroitem = new LibroConAutor
                     {
-                        ID = idlibro.ID,
-                        Título= idlibro.Título,
+                        
+                        LibroID = idlibro.ID,
+                        Título = idlibro.Título,
+                        Año = idlibro.Año,
+                        Autor = idlibro.Autor
 
                     };
                     listaLibros.Add(libroitem);
@@ -222,14 +270,12 @@ namespace Libreria
         }
     }
 
-    // ... Aquí seguiría el código del servicio WCF.
-    // SERVICIO WCF
 
-    public class Service1 : ILibreria, IDisposable
+    public class LibreriaService : ILibreria, IDisposable
     {
         private IUnidadDeTrabajo unidadDeTrabajo;
 
-        public Service1()
+        public LibreriaService()
         {
             this.unidadDeTrabajo = new UnidadDeTrabajo();
         }
@@ -266,7 +312,7 @@ namespace Libreria
             unidadDeTrabajo.Dispose();
         }
 
-        List<Libros> ILibreria.ObtenerLibrosPorAutor(string nombreAutor)
+        List<LibroConAutor> ILibreria.ObtenerLibrosPorAutor(string nombreAutor)
         {
             // 
             try
@@ -279,6 +325,83 @@ namespace Libreria
             }
 
            }
+
+        public List<LibroConAutor> ObtenerLibrosPorAutor(string nombreAutor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AutorConLibro> ObtenerAutorPorLibro(int Libroid)
+        {
+            // Vamos a obtener a un autor por el id libro
+            try
+            {
+             // a usar sp_GetAutorPorLibro
+                ObjectResult<sp_GetAutorYLibrosPorLibroId_Result> autor = unidadDeTrabajo.RepositorioLibro.ObtenerAutorPorLibro(Libroid);
+                List<AutorConLibro> listaLibros = new List<AutorConLibro>();
+                foreach (sp_GetAutorYLibrosPorLibroId_Result idlibro in autor)
+                {
+                    AutorConLibro libroitem = new AutorConLibro
+                    {
+                        ID = idlibro.ID,
+                            Nombre = idlibro.Nombre,
+                            Nacionalidad = idlibro.Nacionalidad,
+                            Título = idlibro.Título,
+                            Año = idlibro.Año
+                    };
+                    listaLibros.Add(libroitem);
+                }
+
+                return listaLibros; 
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("Ocurrió un error al obtener los libros: " + ex.Message);
+            }
+        }
+
+        public void InsertarLibro(string Título, int Año, string NombreAutor)
+        {
+            // Vamos a insertar un libro
+            try
+            {
+                unidadDeTrabajo.RepositorioLibro.AgregarLibro(Título , Año ,NombreAutor);
+                unidadDeTrabajo.Guardar();
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("Ocurrió un error al insertar el libro: " + ex.Message);
+            }
+        }
+
+        public void InsertarAutor(string Nombre, string Nacionalidad)
+        {
+            // Vamos a insertar un autor
+            try
+            {
+                unidadDeTrabajo.RepositorioAutor.AgregarAutor(Nombre, Nacionalidad);
+                unidadDeTrabajo.Guardar();
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException("Ocurrió un error al insertar el autor: " + ex.Message);
+            }
+        }
+
+        public void BorrarLibro(int idLibro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActualizarAutor(AutorUpdateRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActualizarLibro(LibroUpdateRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

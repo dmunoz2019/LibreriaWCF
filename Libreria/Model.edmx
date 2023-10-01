@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SistemaGestionLibrosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SistemaGestionLibrosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Autores">
           <Key>
             <PropertyRef Name="ID" />
@@ -41,7 +41,7 @@
         <Function Name="sp_CreateLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Título" Type="nvarchar" Mode="In" />
           <Parameter Name="Año" Type="int" Mode="In" />
-          <Parameter Name="IDAutor" Type="int" Mode="In" />
+          <Parameter Name="NombreAutor" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_DeleteAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -86,8 +86,7 @@
             <End Role="Libros" EntitySet="Libros" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaGestionLibrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -136,31 +135,31 @@
           <FunctionImport Name="sp_CreateLibro">
             <Parameter Name="Título" Mode="In" Type="String" />
             <Parameter Name="Año" Mode="In" Type="Int32" />
-            <Parameter Name="IDAutor" Mode="In" Type="Int32" />
+            <Parameter Name="NombreAutor" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_DeleteAutor">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_DeleteLibro">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetAllAutores" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAllAutores_Result)" />
           <FunctionImport Name="sp_GetAllBooks" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAllBooks_Result)" />
           <FunctionImport Name="sp_GetAutorById" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAutorById_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetAutoresConMasDeTresLibros" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAutoresConMasDeTresLibros_Result)" />
           <FunctionImport Name="sp_GetAutorYLibrosPorLibroId" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetAutorYLibrosPorLibroId_Result)">
-            <Parameter Name="IDLibro" Mode="In" Type="Int32" />
+          <Parameter Name="IDLibro" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetLibroById" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibroById_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetLibrosPorAutorId" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibrosPorAutorId_Result)">
-            <Parameter Name="IDAutor" Mode="In" Type="Int32" />
+          <Parameter Name="IDAutor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetLibrosPorNombreAutor" ReturnType="Collection(SistemaGestionLibrosModel.sp_GetLibrosPorNombreAutor_Result)">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
+          <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_UpdateAutor">
             <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -349,7 +348,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
