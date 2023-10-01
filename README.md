@@ -37,84 +37,57 @@ Install-Package EntityFramework -Version 6.2.0
 ## Estructura del Proyecto
 
 El proyecto está estructurado de la siguiente manera:
-
 ```
-SistemaGestionLibros/
+📁 `Libreria`
 │
-│   .gitattributes
-│   .gitignore
-│   image.png
-│   Libreria.sln
-│   README.md
+├───📂 `db`
+│   └───📜 `Procedimientos`
 │
-├─ 📂 db/
-│   │   SistemaGestionLibros.bak
-│   │
-│   └─ 📂 Procedimientos/
-│       │   Creación de base de datos.sql
-│       │   LibrosAutores.sql
-│       │   Procedimientos.sql
+├───📘 `Libreria`
+│   ├───🔒 `App_Data`
+│   ├───🔧 `bin`
+│   ├───💽 `Data`
+│   ├───🔍 `obj`
+│   │   ├───🐞 `Debug`
+│   │   │   ├───📦 `edmxResourcesToEmbed`
+│   │   │   │   └───💾 `Data`
+│   │   │   └───🌡️ `TempPE`
+│   │   └───🚀 `Release`
+│   │       ├───📦 `edmxResourcesToEmbed`
+│   │       │   └───💾 `Data`
+│   │       ├───📦 `Package`
+│   │       │   └───📂 `PackageTmp`
+│   │       │       ├───🔧 `bin`
+│   │       │       ├───💽 `Data`
+│   │       │       └───📡 `Servicios`
+│   │       ├───🔍 `ProfileTransformWebConfig`
+│   │       │   └───🔍 `transformed`
+│   │       ├───🌡️ `TempPE`
+│   │       └───🔍 `TransformWebConfig`
+│   │           ├───🔍 `assist`
+│   │           ├───🔍 `original`
+│   │           └───🔍 `transformed`
+│   ├───⚙️ `Properties`
+│   │   └───🚀 `PublishProfiles`
+│   ├───📚 `Repositorios`
+│   │   └───📄 `Interfaces`
+│   ├───📡 `Servicios`
+│   └───📚 `UnidadesT`
 │
-├─ 📂 Libreria/
-│   │   Autores.cs
-│   │   ILibreria.cs
-│   │   Libreria.csproj
-│   │   Libreria.csproj.user
-│   │   Libreria.svc
-│   │   Libreria.svc.cs
-│   │   Libros.cs
-│   │   Model.Context.cs
-│   │   Model.Context.tt
-│   │   Model.cs
-│   │   Model.Designer.cs
-│   │   Model.edmx
-│   │   Model.edmx.diagram
-│   │   Model.tt
-│   │   packages.config
-│   │   sp_GetAllAutores_Result.cs
-│   │   sp_GetAllBooks_Result.cs
-│   │   sp_GetAutorById_Result.cs
-│   │   sp_GetAutoresConMasDeTresLibros_Result.cs
-│   │   sp_GetAutorYLibrosPorLibroId_Result.cs
-│   │   sp_GetLibroById_Result.cs
-│   │   sp_GetLibrosPorAutorId_Result.cs
-│   │   sp_GetLibrosPorNombreAutor_Result.cs
-│   │   Web.config
-│   │   Web.Debug.config
-│   │   Web.Release.config
-│   │
-│   ├─── App_Data/
-│   ├─── bin/
-│   │       EntityFramework.dll
-│   │       EntityFramework.SqlServer.dll
-│   │       EntityFramework.SqlServer.xml
-│   │       EntityFramework.xml
-│   │       Libreria.dll
-│   │       Libreria.dll.config
-│   │       Libreria.pdb
-│   │
-│   ├─── obj/
-│   │   ├─── Debug/
-│   │   │   │   ...
-│   │   │   └─ 📂 edmxResourcesToEmbed/
-│   │   └─ 📂 Release/
-│   │       │   ...
-│   │       └─ 📂 edmxResourcesToEmbed/
-│   │
-│   └─ 📂 Properties/
-│           AssemblyInfo.cs
+├───📦 `packages`
+│   └───📚 `EntityFramework.6.2.0`
+│       ├───📄 `Content`
+│       │   └───🔍 `net40`
+│       ├───📚 `lib`
+│       │   ├───🔍 `net40`
+│       │   └───🔍 `net45`
+│       └───🛠️ `tools`
 │
-└─ 📂 packages/
-    └─ 📂 EntityFramework.6.2.0/
-        │   ...
-        ├─── Content/
-        │   └─ 📂 net40/
-        ├─── lib/
-        │   ├─── net40/
-        │   └─ 📂 net45/
-        └─ 📂 tools/
+└───🚀 `Publish`
+    ├───🔧 `bin`
+    ├───💽 `Data`
+    └───📡 `Servicios`
 ```
-
 ## Instalación
 
 1. Clona el repositorio:
