@@ -38,6 +38,18 @@ namespace Libreria
         [OperationContract]
         List<LibroEditorial> ObtenerLibrosPorEditorial(string nombreEditorial);
 
+        // obtener un solo libro por su id
+        [OperationContract]
+        Libro ObtenerLibroPorId(int idLibro);
+
+        // obtener un solo autor por su id
+        [OperationContract]
+        Autore ObtenerAutorPorId(int idAutor);
+
+        // obtener una editorial por su id
+        [OperationContract]
+        Editoriale ObtenerEditorialPorId(int idEditorial);
+
             
         // Estos son para insertar en formato es JSON {"Título":"El Quijote", "Año":1605 , "NombreAutor":"Cervantes"}
         [OperationContract]

@@ -51,7 +51,7 @@ namespace Libreria.Repositorios
             }
             catch (EntityException ex)
             {
-                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message + "/" + ex.InnerException);
             }
         }
 
@@ -95,26 +95,32 @@ namespace Libreria.Repositorios
             }
         }
 
-        Libro IRepositorioLibro.ObtenerLibroPorId(int id)
+        public Libro ObtenerLibroPorId(int id)
         {
-            // Vamos a obtener un libro por id
             try
             {
-                ObjectResult<sp_GetLibroById_Result> libro = db.sp_GetLibroById(id);
+                ObjectResult<sp_GetLibroById_Result> libroResult = db.sp_GetLibroById(id);
+                var libroData = libroResult.FirstOrDefault();
+                if (libroData == null)
+                {
+                    return null;
+                }
+
                 Libro libroitem = new Libro
                 {
-                    ID = libro.FirstOrDefault().ID,
-                    Título = libro.FirstOrDefault().Título,
-                    Año = libro.FirstOrDefault().Año,
-                    IDAutor = libro.FirstOrDefault().IDAutor
+                    ID = libroData.ID,
+                    Título = libroData.Título,
+                    Año = libroData.Año,
+                    IDAutor = libroData.IDAutor
                 };
                 return libroitem;
             }
             catch (EntityException ex)
             {
-                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message + "/"+ ex.InnerException);
             }
         }
+
 
         IEnumerable<LibroConAutor> IRepositorioLibro.ObtenerLibrosPorAutor(string nombreAutor)
         {

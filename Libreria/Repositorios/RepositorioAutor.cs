@@ -83,7 +83,30 @@ namespace Libreria.Repositorios
 
         Autore IRepositorioAutor.ObtenerAutorPorId(int id)
         {
-            throw new NotImplementedException();
+            // vamos a obtener un autor por su id
+
+            try
+            {
+                ObjectResult<sp_GetAutorById_Result> autorResult = db.sp_GetAutorById(id);
+                var autorData = autorResult.FirstOrDefault();
+                if (autorData == null)
+                {
+                    return null;
+                }
+
+                Autore autoreitem = new Autore
+                {
+                    ID = autorData.ID,
+                    Nombre = autorData.Nombre,
+                    Nacionalidad = autorData.Nacionalidad
+                };
+
+                return autoreitem;
+            }
+            catch (EntityException ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
         }
 
     }

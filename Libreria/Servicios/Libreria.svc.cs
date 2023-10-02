@@ -190,6 +190,21 @@ namespace Libreria
         {
             return unidadDeTrabajo.RepositorioEditoriale.ObtenerEditoriales().ToList();
         }
+
+        public Libro ObtenerLibroPorId(int idLibro)
+        {
+            return unidadDeTrabajo.RepositorioLibro.ObtenerLibroPorId(idLibro);
+        }
+
+        public Autore ObtenerAutorPorId(int idAutor)
+        {
+            return unidadDeTrabajo.RepositorioAutor.ObtenerAutorPorId(idAutor);
+        }
+
+        public Editoriale ObtenerEditorialPorId(int idEditorial)
+        {
+            return unidadDeTrabajo.RepositorioEditoriale.ObtenerEditorialPorId(idEditorial);
+        }
     }
 
 

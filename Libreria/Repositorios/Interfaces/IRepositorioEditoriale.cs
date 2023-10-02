@@ -10,7 +10,6 @@ namespace Libreria.Repositorios.Interfaces
     public interface IRepositorioEditoriale
     {
         List<Editoriale> ObtenerEditoriales();
-
-
+        Editoriale ObtenerEditorialPorId(int idEditorial);
     }
 }

@@ -17,5 +17,7 @@ namespace Libreria.Repositorios.Interfaces
         void EliminarLibro(int id);
         ObjectResult<sp_GetAutorYLibrosPorLibroId_Result> ObtenerAutorPorLibro(int libroid);
         IEnumerable<LibroEditorial> ObtenerLibrosPorEditorial(string nombreEditorial);
+
+
     }
 }

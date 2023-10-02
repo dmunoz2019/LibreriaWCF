@@ -5,6 +5,7 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 using Libreria.Repositorios.Interfaces;
+using System.Data.SqlClient;
 
 namespace Libreria.Repositorios
 {
@@ -36,6 +37,25 @@ namespace Libreria.Repositorios
             
         }
 
-        
+        public Editoriale ObtenerEditorialPorId(int idEditorial)
+        {
+            // Usamos SqlQuery para ejecutar una consulta SQL directa
+            // Utilizamos @idEditorial como parámetro para prevenir inyecciones SQL
+            string query = "SELECT * FROM Editoriales WHERE IDEditorial = @idEditorial";
+            try
+            {
+                Editoriale editorial = db.Editoriales.SqlQuery(query, new SqlParameter("@idEditorial", idEditorial))
+                                               .FirstOrDefault();
+                return editorial;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al acceder a la base de datos: " + ex.Message);
+            }
+            
+
+            
+        }
+
     }
 }
