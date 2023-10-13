@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="a8873271-2698-4aea-9aa6-ca81ca57202b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7416/Servicios/Libreria.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LibreriaService.wsdl" MetadataType="Wsdl" ID="9e0ee033-5e6e-4ad1-8749-12f11000b4a4" SourceId="1" SourceUrl="http://localhost:7416/Servicios/Libreria.svc?wsdl" />
+    <MetadataFile FileName="Libreria.xsd" MetadataType="Schema" ID="924a33f9-5ea4-4d23-a261-48f21c637c16" SourceId="1" SourceUrl="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd0" />
+    <MetadataFile FileName="Libreria1.xsd" MetadataType="Schema" ID="b351ca51-d8b2-40c0-97a2-856f9d097df5" SourceId="1" SourceUrl="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd1" />
+    <MetadataFile FileName="Libreria2.xsd" MetadataType="Schema" ID="48ccfaef-ecd8-4ea1-b177-e0c32d4ef641" SourceId="1" SourceUrl="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd2" />
+    <MetadataFile FileName="Libreria3.xsd" MetadataType="Schema" ID="d97f450a-b879-42db-86ab-791fd6c2777c" SourceId="1" SourceUrl="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd3" />
+    <MetadataFile FileName="Libreria.disco" MetadataType="Disco" ID="7800c882-ed1b-4f67-80fb-e0b8b7599c81" SourceId="1" SourceUrl="http://localhost:7416/Servicios/Libreria.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

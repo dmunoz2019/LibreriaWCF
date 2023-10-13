@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Libreria" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Libreria" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfLibroConAutor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LibroConAutor" nillable="true" type="tns:LibroConAutor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLibroConAutor" nillable="true" type="tns:ArrayOfLibroConAutor" />
+  <xs:complexType name="LibroConAutor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Autor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Año" type="xs:int" />
+      <xs:element minOccurs="0" name="LibroID" type="xs:int" />
+      <xs:element minOccurs="0" name="Nacionalidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Título" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LibroConAutor" nillable="true" type="tns:LibroConAutor" />
+  <xs:complexType name="ArrayOfAutorConLibro">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AutorConLibro" nillable="true" type="tns:AutorConLibro" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAutorConLibro" nillable="true" type="tns:ArrayOfAutorConLibro" />
+  <xs:complexType name="AutorConLibro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Año" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Nacionalidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Título" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AutorConLibro" nillable="true" type="tns:AutorConLibro" />
+  <xs:complexType name="ArrayOfLibroEditorial">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LibroEditorial" nillable="true" type="tns:LibroEditorial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLibroEditorial" nillable="true" type="tns:ArrayOfLibroEditorial" />
+  <xs:complexType name="LibroEditorial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Autor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Editorial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Título" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LibroEditorial" nillable="true" type="tns:LibroEditorial" />
+</xs:schema>

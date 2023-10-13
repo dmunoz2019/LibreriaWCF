@@ -5,6 +5,11 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria", "Libreria\Libreria.csproj", "{FE56A26A-4F23-4AE1-9794-4BF4AE9FB6CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibreriaFrontEnd", "LibreriaFrontEnd\LibreriaFrontEnd.csproj", "{09635189-17DD-4AE1-BD68-10DF6CDF48AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FE56A26A-4F23-4AE1-9794-4BF4AE9FB6CE} = {FE56A26A-4F23-4AE1-9794-4BF4AE9FB6CE}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{FE56A26A-4F23-4AE1-9794-4BF4AE9FB6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE56A26A-4F23-4AE1-9794-4BF4AE9FB6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE56A26A-4F23-4AE1-9794-4BF4AE9FB6CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09635189-17DD-4AE1-BD68-10DF6CDF48AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09635189-17DD-4AE1-BD68-10DF6CDF48AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09635189-17DD-4AE1-BD68-10DF6CDF48AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09635189-17DD-4AE1-BD68-10DF6CDF48AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

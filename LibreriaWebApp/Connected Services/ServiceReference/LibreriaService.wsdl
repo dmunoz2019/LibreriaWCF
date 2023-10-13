@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="LibreriaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Libreria.Data" />
+      <xsd:import schemaLocation="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Libreria" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILibreria_ObtenerEditoriales_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEditoriales" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerEditoriales_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEditorialesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibros_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibros" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerAutores_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAutores" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerAutores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAutoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibrosPorAutor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibrosPorAutor" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibrosPorAutor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibrosPorAutorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerAutorPorLibro_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAutorPorLibro" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerAutorPorLibro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAutorPorLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibrosPorEditorial_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibrosPorEditorial" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibrosPorEditorial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibrosPorEditorialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibroPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibroPorId" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerLibroPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerLibroPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerAutorPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAutorPorId" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerAutorPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAutorPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerEditorialPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEditorialPorId" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ObtenerEditorialPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEditorialPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_InsertarLibro_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarLibro" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_InsertarLibro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_InsertarAutor_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarAutor" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_InsertarAutor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarAutorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_BorrarLibro_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarLibro" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_BorrarLibro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_BorrarAutor_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarAutor" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_BorrarAutor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarAutorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ActualizarAutor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarAutor" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ActualizarAutor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarAutorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ActualizarLibro_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarLibro" />
+  </wsdl:message>
+  <wsdl:message name="ILibreria_ActualizarLibro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarLibroResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILibreria">
+    <wsdl:operation name="ObtenerEditoriales">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerEditoriales" message="tns:ILibreria_ObtenerEditoriales_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerEditorialesResponse" message="tns:ILibreria_ObtenerEditoriales_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibros">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibros" message="tns:ILibreria_ObtenerLibros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibrosResponse" message="tns:ILibreria_ObtenerLibros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAutores">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerAutores" message="tns:ILibreria_ObtenerAutores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerAutoresResponse" message="tns:ILibreria_ObtenerAutores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibrosPorAutor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibrosPorAutor" message="tns:ILibreria_ObtenerLibrosPorAutor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibrosPorAutorResponse" message="tns:ILibreria_ObtenerLibrosPorAutor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAutorPorLibro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerAutorPorLibro" message="tns:ILibreria_ObtenerAutorPorLibro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerAutorPorLibroResponse" message="tns:ILibreria_ObtenerAutorPorLibro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibrosPorEditorial">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibrosPorEditorial" message="tns:ILibreria_ObtenerLibrosPorEditorial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibrosPorEditorialResponse" message="tns:ILibreria_ObtenerLibrosPorEditorial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibroPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibroPorId" message="tns:ILibreria_ObtenerLibroPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerLibroPorIdResponse" message="tns:ILibreria_ObtenerLibroPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAutorPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerAutorPorId" message="tns:ILibreria_ObtenerAutorPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerAutorPorIdResponse" message="tns:ILibreria_ObtenerAutorPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEditorialPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ObtenerEditorialPorId" message="tns:ILibreria_ObtenerEditorialPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ObtenerEditorialPorIdResponse" message="tns:ILibreria_ObtenerEditorialPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarLibro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/InsertarLibro" message="tns:ILibreria_InsertarLibro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/InsertarLibroResponse" message="tns:ILibreria_InsertarLibro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarAutor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/InsertarAutor" message="tns:ILibreria_InsertarAutor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/InsertarAutorResponse" message="tns:ILibreria_InsertarAutor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarLibro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/BorrarLibro" message="tns:ILibreria_BorrarLibro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/BorrarLibroResponse" message="tns:ILibreria_BorrarLibro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarAutor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/BorrarAutor" message="tns:ILibreria_BorrarAutor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/BorrarAutorResponse" message="tns:ILibreria_BorrarAutor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarAutor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ActualizarAutor" message="tns:ILibreria_ActualizarAutor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ActualizarAutorResponse" message="tns:ILibreria_ActualizarAutor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarLibro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibreria/ActualizarLibro" message="tns:ILibreria_ActualizarLibro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibreria/ActualizarLibroResponse" message="tns:ILibreria_ActualizarLibro_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ILibreria" type="tns:ILibreria">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerEditoriales">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerEditoriales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibros">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerLibros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAutores">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerAutores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibrosPorAutor">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerLibrosPorAutor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAutorPorLibro">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerAutorPorLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibrosPorEditorial">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerLibrosPorEditorial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerLibroPorId">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerLibroPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAutorPorId">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerAutorPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEditorialPorId">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ObtenerEditorialPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarLibro">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/InsertarLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarAutor">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/InsertarAutor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarLibro">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/BorrarLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarAutor">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/BorrarAutor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarAutor">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ActualizarAutor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarLibro">
+      <soap:operation soapAction="http://tempuri.org/ILibreria/ActualizarLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LibreriaService">
+    <wsdl:port name="BasicHttpBinding_ILibreria" binding="tns:BasicHttpBinding_ILibreria">
+      <soap:address location="http://localhost:7416/Servicios/Libreria.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

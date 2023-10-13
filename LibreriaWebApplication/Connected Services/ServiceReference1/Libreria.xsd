@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Libreria.Data" />
+  <xs:import schemaLocation="http://localhost:7416/Servicios/Libreria.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Libreria" />
+  <xs:element name="ObtenerEditoriales">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerEditorialesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Libreria.Data" minOccurs="0" name="ObtenerEditorialesResult" nillable="true" type="q1:ArrayOfEditoriale" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibros">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Libreria.Data" minOccurs="0" name="ObtenerLibrosResult" nillable="true" type="q2:ArrayOfLibro" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAutores">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAutoresResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Libreria.Data" minOccurs="0" name="ObtenerAutoresResult" nillable="true" type="q3:ArrayOfAutore" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibrosPorAutor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreAutor" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibrosPorAutorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Libreria" minOccurs="0" name="ObtenerLibrosPorAutorResult" nillable="true" type="q4:ArrayOfLibroConAutor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAutorPorLibro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Libroid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAutorPorLibroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Libreria" minOccurs="0" name="ObtenerAutorPorLibroResult" nillable="true" type="q5:ArrayOfAutorConLibro" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibrosPorEditorial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreEditorial" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibrosPorEditorialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Libreria" minOccurs="0" name="ObtenerLibrosPorEditorialResult" nillable="true" type="q6:ArrayOfLibroEditorial" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibroPorId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLibro" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerLibroPorIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Libreria.Data" minOccurs="0" name="ObtenerLibroPorIdResult" nillable="true" type="q7:Libro" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAutorPorId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idAutor" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAutorPorIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Libreria.Data" minOccurs="0" name="ObtenerAutorPorIdResult" nillable="true" type="q8:Autore" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerEditorialPorId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idEditorial" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerEditorialPorIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Libreria.Data" minOccurs="0" name="ObtenerEditorialPorIdResult" nillable="true" type="q9:Editoriale" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarLibro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Título" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Año" type="xs:int" />
+        <xs:element minOccurs="0" name="NombreAutor" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarLibroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarAutor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Nacionalidad" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarAutorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarLibro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLibro" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarLibroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarAutor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idAutor" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarAutorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarAutor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Nacionalidad" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarAutorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarLibro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element minOccurs="0" name="Título" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Año" type="xs:int" />
+        <xs:element minOccurs="0" name="IDAutor" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarLibroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
